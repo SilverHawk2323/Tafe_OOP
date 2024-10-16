@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class HighScoreSystem : MonoBehaviour
 {
@@ -9,10 +10,12 @@ public class HighScoreSystem : MonoBehaviour
 
     public int maxScores = 10;
 
+    public Transform panel;
+    public TMP_Text textPrefab;
 
     private void Start()
     {
-       /* NewScore("sadsa", 3);
+        /*NewScore("sadsa", 3);
         NewScore("Sara", 1);
         NewScore("RRR", 6);
         NewScore("Dom", 9);
@@ -26,10 +29,33 @@ public class HighScoreSystem : MonoBehaviour
 
     private void RefreshScoreDisplay()
     {
+        //Destroy all children
+        //panel
+
+        for(int i = panel.childCount - 1; i  >= 0; i--)
+        {
+            Destroy(panel.GetChild(i).gameObject);
+        }
+
+        
+
         for(int i = 0; i < scores.Count; i++)
         {
             Debug.Log(names[i] + " scored: " + scores[i]);
+
+            TMP_Text text = Instantiate(textPrefab, panel);
+            text.text = names[i];
+
+            text = Instantiate(textPrefab, panel);
+            text.text = scores[i].ToString();
         }
+    }
+
+    string[] possibleNames = { "Anthony", "Dom", "Sara", "Batman", "Alex", "Andrew" };
+
+    public void NewScore(float score)
+    {
+        NewScore(possibleNames[Random.Range(0, possibleNames.Length)], score);
     }
 
     public void NewScore(string name, float score)
