@@ -38,6 +38,8 @@ public class ItemBox : TriggerZone
                 break;
             }
         }
+        
+
         if (chosenPU == null) return;
         chosenPU.UsePowerup(collider.attachedRigidbody);
         cooldown = chosenPU.cooldown;

@@ -9,10 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e735dd07a802c6b48ba39d58b6f472a7, type: 3}
-  m_Name: Boost
+  m_Script: {fileID: 11500000, guid: f20fb8589c981124687e46757253c21d, type: 3}
+  m_Name: Glue
   m_EditorClassIdentifier: 
-  chance: 1
-  cooldown: 1
-  duration: 0
+  chance: 100
+  cooldown: 5
+  duration: 3
   power: 50
+  mask:
+    serializedVersion: 2
+    m_Bits: 64
+  radius: 10

@@ -15,4 +15,8 @@ MonoBehaviour:
   chance: 1
   cooldown: 1
   duration: 0
-  power: 1
+  power: 5000
+  mask:
+    serializedVersion: 2
+    m_Bits: 64
+  radius: 8

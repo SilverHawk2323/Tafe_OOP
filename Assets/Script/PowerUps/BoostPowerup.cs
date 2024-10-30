@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "PowerUps/boost")]
+[CreateAssetMenu(menuName = "PowerUps/Boost")]
 public class BoostPowerup : Powerups
 {
     public override void UsePowerup(Rigidbody rb)
     {
-        rb.AddRelativeForce(Vector3.back * power, ForceMode.VelocityChange);
+        Debug.Log("Boost");
+        rb.AddForce(rb.velocity.normalized * power, ForceMode.VelocityChange);
     }
 }
