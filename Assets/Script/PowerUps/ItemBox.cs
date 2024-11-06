@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemBox : TriggerZone
+public class ItemBox : TriggerZone, I_Clickable
 {
     public Powerups[] powerup;
 
@@ -45,9 +45,22 @@ public class ItemBox : TriggerZone
         cooldown = chosenPU.cooldown;
     }
 
+    public void OnClick()
+    {
+        StartCoroutine(Spin());
+    }
+
     private void Update()
     {
-        //transform.Rotate(Vector3.up, speed * Time.deltaTime);
+        transform.Rotate(Vector3.up, speed * Time.deltaTime);
         cooldown -= Time.deltaTime;
+    }
+
+    IEnumerator Spin()
+    {
+        speed += 50f;
+        //transform.Rotate(Vector3.up, speed * Time.deltaTime);
+        yield return new WaitForSeconds(2f);
+        speed -= 50f;
     }
 }

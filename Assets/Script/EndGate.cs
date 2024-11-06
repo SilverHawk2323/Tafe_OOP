@@ -6,6 +6,8 @@ public class EndGate : TriggerZone
 {
     HighScoreSystem highscore;
 
+    [SerializeField] GameObject scoreboard;
+
     public void Start()
     {
         highscore = FindAnyObjectByType<HighScoreSystem>();
@@ -18,5 +20,11 @@ public class EndGate : TriggerZone
             Debug.Log(Timer.instance.CurrentTime());
             highscore.NewScore(Timer.instance.CurrentTime());
         }
+        if(!scoreboard.activeInHierarchy)
+        {
+            scoreboard.SetActive(true);
+            Debug.Log("Activated Scoreboard");
+        }
+        
     }
 }

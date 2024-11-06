@@ -15,8 +15,6 @@ public class GluePower : Powerups
         Debug.Log(neighbors.Length);
 
         FindAnyObjectByType<ItemBox>().StartCoroutine(GlueTimer(neighbors, rb));
-
-        
     }
 
     IEnumerator GlueTimer(Collider[] neighbors, Rigidbody rb)
