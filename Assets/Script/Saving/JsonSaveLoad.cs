@@ -5,20 +5,26 @@ using System.IO;
 
 public static class JsonSaveLoad 
 {
-    public static string file = Application.dataPath + "/save.json";
+#if UNITY_EDITOR
+    public static string fileHS = Application.dataPath + "/saveHS.json";
+    public static string filePosition = Application.dataPath + "/savePos.json";
+#else
+    public static string file = Application.persistentDataPath + "/save.json";
+    public static string filePosition = Application.persistentDataPath + "/savePos.json";
+#endif
 
-    public static void Save(GameData data)
+    public static void Save(HighScoreData data)
     {
         string json = JsonUtility.ToJson(data, true);
-        File.WriteAllText(file, json);
+        File.WriteAllText(fileHS, json);
     }
 
-    public static GameData Load()
+    public static HighScoreData Load()
     {
-        if (File.Exists(file))
+        if (File.Exists(fileHS))
         {
-            string json = File.ReadAllText(file);
-            return JsonUtility.FromJson<GameData>(json);
+            string json = File.ReadAllText(fileHS);
+            return JsonUtility.FromJson<HighScoreData>(json);
         }
         return null;
     }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Linq;
 
 public class HighScoreSystem : MonoBehaviour
 {
@@ -21,9 +22,12 @@ public class HighScoreSystem : MonoBehaviour
         NewScore("Dom", 9);
         NewScore("Anthony", 2);
         NewScore("Batman", 5);*/
-
-
-
+        HighScoreData data = JsonSaveLoad.Load();
+        if (data != null)
+        {
+            names = data.names.ToList();
+            scores = data.scores.ToList();
+        }
         RefreshScoreDisplay();
     }
 
@@ -32,14 +36,14 @@ public class HighScoreSystem : MonoBehaviour
         //Destroy all children
         //panel
 
-        for(int i = panel.childCount - 1; i  >= 0; i--)
+        for (int i = panel.childCount - 1; i >= 0; i--)
         {
             Destroy(panel.GetChild(i).gameObject);
         }
 
-        
 
-        for(int i = 0; i < scores.Count; i++)
+
+        for (int i = 0; i < scores.Count; i++)
         {
             Debug.Log(names[i] + " scored: " + scores[i]);
 
@@ -60,14 +64,14 @@ public class HighScoreSystem : MonoBehaviour
 
     public void NewScore(string name, float score)
     {
-        for (int i = 0; i < scores.Count ; i++)
+        for (int i = 0; i < scores.Count; i++)
         {
-            if(score < scores[i])
+            if (score < scores[i])
             {
                 scores.Insert(i, score);
                 names.Insert(i, name);
                 RefreshScoreDisplay();
-                if(scores.Count > maxScores)
+                if (scores.Count > maxScores)
                 {
                     scores.RemoveAt(scores.Count - 1);
                     names.RemoveAt(names.Count - 1);
@@ -84,5 +88,10 @@ public class HighScoreSystem : MonoBehaviour
         scores.Add(score);
         names.Add(name);
         RefreshScoreDisplay();
+    }
+
+    private void OnDestroy()
+    {
+        HighScoreData data = new HighScoreData(scores.ToArray(), names.ToArray());
     }
 }
