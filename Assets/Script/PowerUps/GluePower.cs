@@ -14,7 +14,7 @@ public class GluePower : Powerups
         Collider[] neighbors = Physics.OverlapSphere(rb.transform.position, radius, mask);
         Debug.Log(neighbors.Length);
 
-        FindAnyObjectByType<ItemBox>().StartCoroutine(GlueTimer(neighbors, rb));
+        FindAnyObjectByType<Marble>().StartCoroutine(GlueTimer(neighbors, rb));
     }
 
     IEnumerator GlueTimer(Collider[] neighbors, Rigidbody rb)
