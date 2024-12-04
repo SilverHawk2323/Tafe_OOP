@@ -93,5 +93,6 @@ public class HighScoreSystem : MonoBehaviour
     private void OnDestroy()
     {
         HighScoreData data = new HighScoreData(scores.ToArray(), names.ToArray());
+        JsonSaveLoad.Save(data);
     }
 }

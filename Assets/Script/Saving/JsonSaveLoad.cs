@@ -9,7 +9,7 @@ public static class JsonSaveLoad
     public static string fileHS = Application.dataPath + "/saveHS.json";
     public static string filePosition = Application.dataPath + "/savePos.json";
 #else
-    public static string file = Application.persistentDataPath + "/save.json";
+    public static string fileHS = Application.persistentDataPath + "/saveHS.json";
     public static string filePosition = Application.persistentDataPath + "/savePos.json";
 #endif
 
